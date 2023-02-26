@@ -15,7 +15,6 @@ module.exports = (client) => {
             buttons.set(button.data.name, button);
           }
           break;
-
         default:
           break;
       }

@@ -1,5 +1,6 @@
 require('dotenv').config();
-const { TOKEN } = process.env;
+const { TOKEN, DBTOKEN } = process.env;
+const mongoose = require('mongoose');
 const { Client, Collection, ActivityFlagsBitField, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 
@@ -22,6 +23,10 @@ client.handleEvents();
 client.handleComponents();
 client.handleCommands();
 client.login(TOKEN);
+mongoose.set('strictQuery', true);
+(async () => {
+  await mongoose.connect(DBTOKEN).catch(console.error);
+})();
 
 // client.on('ready', () => {
 //   console.log(`Logged in as ${client.user.tag}!`);

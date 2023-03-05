@@ -1,13 +1,13 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 
-const getExampleEmbed = (interaction) =>
+const getExampleEmbed = (interaction, userBalance) =>
   new EmbedBuilder()
     .setTitle(`Профиль — ${interaction.user.username}#${interaction.user.discriminator}`)
     .setThumbnail(interaction.user.displayAvatarURL())
     .addFields([
       {
         name: '🐢Баланс:',
-        value: '```\nvalue\n```',
+        value: '```\n' + userBalance + ' RUB' + '\n```',
         inline: true
       },
       {
@@ -23,9 +23,9 @@ const getExampleEmbed = (interaction) =>
     ]);
 
 module.exports = {
-  replyEvent: (interaction) =>
+  replyEvent: (interaction, userBalance) =>
     interaction.update({
-      embeds: [getExampleEmbed(interaction)],
+      embeds: [getExampleEmbed(interaction, userBalance)],
       components: []
     })
 };

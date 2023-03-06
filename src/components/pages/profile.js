@@ -1,4 +1,7 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
+const { btnArray } = require('../pages/navBar');
+
+const addBalance = new ButtonBuilder().setLabel('🤑Пополнить баланс').setCustomId('addBalance').setStyle(ButtonStyle.Primary);
 
 const getExampleEmbed = (interaction, userBalance) =>
   new EmbedBuilder()
@@ -26,6 +29,6 @@ module.exports = {
   replyEvent: (interaction, userBalance) =>
     interaction.update({
       embeds: [getExampleEmbed(interaction, userBalance)],
-      components: []
+      components: [new ActionRowBuilder().addComponents(addBalance), new ActionRowBuilder().addComponents(btnArray)]
     })
 };
